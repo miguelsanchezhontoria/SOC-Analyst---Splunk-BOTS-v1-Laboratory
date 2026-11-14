@@ -10,17 +10,17 @@ Las habilidades adquiridas con este laboratorio son: SPL - Search Processing Lan
 Configuración del entorno según la guía oficial de Splunk BOTS v1 disponible en el repositorio de GitHub, resolver los escenarios de BOTS v1, reconstruir cada ataque con su timeline, escribir detecciones propias a partir de lo encontrado y documentar el proceso con dashboards.
 
 ## Organización del repositorio
-├── README.md -> este archivo
-├── LICENSE -> explicado más adelante
-├── LICENSE-docs -> explicado más adelante
-├── botsv1 -> carpeta principal del repositorio
-│   ├── README.md -> resumen del escenario y timeline del ataque
-│   ├── writeups -> documentación detallada paso a paso de cómo se han resuelto los problemas planteados
-│   ├── spl.pdf -> documento con las consultas utilizadas durante todo el laboratorio
-│   ├── detections -> reglas/alertas descubiertas
-│   └── dashboards -> paneles visuales en formato XML/JSON
-├── cheatsheets -> chuletas sobre SPL, Windows Event IDs y Sysmon
-└── lab-setup -> carpeta con el documento en el que se explica la instalación y configuración del laboratorio
+├── README.md -> este archivo\
+├── LICENSE -> explicado más adelante\
+├── LICENSE-docs -> explicado más adelante\
+├── botsv1 -> carpeta principal del repositorio\
+│   ├── README.md -> resumen del escenario y timeline del ataque\
+│   ├── writeups -> documentación detallada paso a paso de cómo se han resuelto los problemas planteados\
+│   ├── spl.pdf -> documento con las consultas utilizadas durante todo el laboratorio\
+│   ├── detections -> reglas/alertas descubiertas\
+│   └── dashboards -> paneles visuales en formato XML/JSON\
+├── cheatsheets -> chuletas sobre SPL, Windows Event IDs y Sysmon\
+└── lab-setup -> carpeta con el documento en el que se explica la instalación y configuración del laboratorio\
 
 ## Licencias
 - **Código** -> licencia MIT, ver LICENSE.
