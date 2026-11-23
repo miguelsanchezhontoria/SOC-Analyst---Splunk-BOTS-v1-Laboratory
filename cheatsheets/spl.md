@@ -6,7 +6,7 @@ Chuleta de los comandos de Splunk (SPL) utilizados en el laboratorio. Solo se in
 >
 > **Convención:** `<IP>`, `<campo>` y similares son marcadores que hay que sustituir.
 >
-> **Dónde se usaron:** "Esc. 1" remite a [`escenario-1-defacement-web.md`](../botsv1/writeups/escenario-1-defacement-web.md), seguido de la sección.
+> **Dónde se usaron:** "Esc. 1" remite a [`writeup1-Defacement_Web.pdf`](../botsv1/writeups/writeup1-Defacement_Web.pdf), seguido de la sección.
 
 ## 1. Filtros (parte inicial de la búsqueda)
 

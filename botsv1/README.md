@@ -39,42 +39,18 @@ Mis resultados, hallazgos y razonamientos se irán añadiendo en los apartados s
 
 ## 3. Metodología
 
-- Cada escenario se estructura según la **Cyber Kill Chain** y se mapea a **MITRE ATT&CK**.
+- Cada escenario se estructura seguiendo relativamente la **Cyber Kill Chain**.
 - Cada hallazgo se documenta con su pregunta, razonamiento, consulta SPL, evidencia y conclusión.
-- Las consultas reutilizables se guardan en `spl/` y las detecciones propias en `detections/`.
+- Las consultas reutilizables se guardan en `spl/`, las detecciones propias en `detections/` y los paneles visuales en `dashboards/`.
 
 ## 4. Progreso
 
 | Escenario | Estado | Write-up |
 |---|---|---|
-| 1. Defacement web | Pendiente | — |
+| 1. Defacement web | Completado | Hecho |
 | 2. Ransomware | Pendiente | — |
 
-## 5. Timeline del ataque
-
-> Las fases son las del modelo genérico de la Kill Chain. **No son hallazgos**: cada fila se rellenará con lo que encuentre en los datos.
-
-### Escenario 1: defacement web
-
-| Hora (UTC) | Fase | Qué ocurrió | Evidencia (sourcetype / consulta) | MITRE ATT&CK | Write-up |
-|---|---|---|---|---|---|
-| Pendiente | Reconocimiento | Pendiente | Pendiente | Pendiente | — |
-| Pendiente | Preparación de infraestructura | Pendiente | Pendiente | Pendiente | — |
-| Pendiente | Explotación | Pendiente | Pendiente | Pendiente | — |
-| Pendiente | Instalación / persistencia | Pendiente | Pendiente | Pendiente | — |
-| Pendiente | Mando y control (C2) | Pendiente | Pendiente | Pendiente | — |
-| Pendiente | Acciones sobre objetivos | Pendiente | Pendiente | Pendiente | — |
-
-### Escenario 2: ransomware
-
-| Hora (UTC) | Fase | Qué ocurrió | Evidencia (sourcetype / consulta) | MITRE ATT&CK | Write-up |
-|---|---|---|---|---|---|
-| Pendiente | Entrega / acceso inicial | Pendiente | Pendiente | Pendiente | — |
-| Pendiente | Ejecución | Pendiente | Pendiente | Pendiente | — |
-| Pendiente | Mando y control (C2) | Pendiente | Pendiente | Pendiente | — |
-| Pendiente | Impacto (cifrado) | Pendiente | Pendiente | Pendiente | — |
-
-## 6. Estructura de esta carpeta (prevista)
+## 5. Estructura de esta carpeta (prevista)
 
 ```
 botsv1/
