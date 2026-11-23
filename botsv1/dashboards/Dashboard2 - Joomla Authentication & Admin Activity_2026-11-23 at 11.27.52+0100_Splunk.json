@@ -1,0 +1,212 @@
+{
+  "visualizations": {
+    "viz_qUrhuyLi": {
+      "type": "splunk.line",
+      "options": {},
+      "dataSources": {
+        "primary": "ds_scgnxMk4"
+      }
+    },
+    "viz_srHGfSkt": {
+      "type": "splunk.bar",
+      "options": {},
+      "dataSources": {
+        "primary": "ds_h3RB7lec"
+      }
+    },
+    "viz_mBf2iTPw": {
+      "type": "splunk.table",
+      "options": {},
+      "dataSources": {
+        "primary": "ds_o51SYD3Y"
+      }
+    },
+    "viz_uPYQZG5o": {
+      "type": "splunk.pie",
+      "options": {},
+      "dataSources": {
+        "primary": "ds_KaF2QcRT"
+      }
+    },
+    "viz_b7IUXp5j": {
+      "type": "splunk.table",
+      "options": {},
+      "dataSources": {
+        "primary": "ds_HanuFVCr"
+      }
+    },
+    "viz_KuZmunRO": {
+      "type": "splunk.table",
+      "options": {},
+      "dataSources": {
+        "primary": "ds_kp4cIY7x"
+      }
+    }
+  },
+  "dataSources": {
+    "ds_scgnxMk4": {
+      "type": "ds.search",
+      "options": {
+        "query": "index=botsv1 sourcetype=stream:http earliest=0\nuri_path=\"/joomla/administrator/index.php\"\nhttp_method=POST\n| timechart span=5m count as \"Login Attempts\""
+      },
+      "name": "Search_1"
+    },
+    "ds_h3RB7lec": {
+      "type": "ds.search",
+      "options": {
+        "query": "index=botsv1 sourcetype=stream:http earliest=0\nuri_path=\"/joomla/administrator/index.php\"\nhttp_method=POST\n| stats count as attempts by src_ip\n| sort - attempts"
+      },
+      "name": "Search_2"
+    },
+    "ds_o51SYD3Y": {
+      "type": "ds.search",
+      "options": {
+        "query": "index=botsv1 sourcetype=stream:http earliest=0\nuri_path=\"/joomla/administrator/index.php\"\nhttp_method=POST\n| rex field=form_data \"(?:^|&)username=(?<username>[^&]+)\"\n| rex field=form_data \"(?:^|&)passwd=(?<password>[^&]+)\"\n| stats count as attempts by src_ip username password\n| sort src_ip - attempts"
+      },
+      "name": "Search_3"
+    },
+    "ds_KaF2QcRT": {
+      "type": "ds.search",
+      "options": {
+        "query": "index=botsv1 sourcetype=stream:http earliest=0\nuri_path=\"/joomla/administrator/index.php\"\nhttp_method=POST\n| eval http_status=coalesce(status,\"No status\")\n| stats count as attempts by http_status\n| sort - attempts"
+      },
+      "name": "Search_4"
+    },
+    "ds_HanuFVCr": {
+      "type": "ds.search",
+      "options": {
+        "query": "index=botsv1 sourcetype=stream:http earliest=0\nuri_path=\"/joomla/administrator/index.php\"\nhttp_method=POST\nform_data=\"*install_package*\"\n| table _time src_ip status cookie form_data\n| sort - _time"
+      },
+      "name": "Search_5"
+    },
+    "ds_kp4cIY7x": {
+      "type": "ds.search",
+      "options": {
+        "query": "index=botsv1 sourcetype=stream:http earliest=0\nuri_path=\"/joomla/administrator/index.php\"\nhttp_method=POST\n| stats count as requests\n    dc(cookie) as distinct_cookies\n    values(status) as http_status\n    by src_ip\n| sort - requests"
+      },
+      "name": "Search_6"
+    }
+  },
+  "defaults": {
+    "dataSources": {
+      "ds.search": {
+        "options": {
+          "queryParameters": {
+            "latest": "$global_time.latest$",
+            "earliest": "$global_time.earliest$"
+          }
+        }
+      },
+      "ds.spl2": {
+        "options": {
+          "queryParameters": {
+            "latest": "$global_time.latest$",
+            "earliest": "$global_time.earliest$"
+          }
+        }
+      }
+    },
+    "visualizations": {
+      "global": {
+        "showProgressBar": true
+      }
+    }
+  },
+  "inputs": {
+    "input_global_trp": {
+      "type": "input.timerange",
+      "options": {
+        "token": "global_time",
+        "defaultValue": "-24h@h,now"
+      },
+      "title": "Global Time Range"
+    }
+  },
+  "layout": {
+    "options": {},
+    "globalInputs": [
+      "input_global_trp"
+    ],
+    "tabs": {
+      "items": [
+        {
+          "layoutId": "layout_1",
+          "label": "New tab"
+        }
+      ]
+    },
+    "layoutDefinitions": {
+      "layout_1": {
+        "type": "grid",
+        "structure": [
+          {
+            "item": "viz_qUrhuyLi",
+            "type": "block",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "w": 1440,
+              "h": 400
+            }
+          },
+          {
+            "item": "viz_srHGfSkt",
+            "type": "block",
+            "position": {
+              "x": 0,
+              "y": 400,
+              "w": 1440,
+              "h": 400
+            }
+          },
+          {
+            "item": "viz_mBf2iTPw",
+            "type": "block",
+            "position": {
+              "x": 0,
+              "y": 800,
+              "w": 1440,
+              "h": 400
+            }
+          },
+          {
+            "item": "viz_uPYQZG5o",
+            "type": "block",
+            "position": {
+              "x": 0,
+              "y": 1200,
+              "w": 1440,
+              "h": 400
+            }
+          },
+          {
+            "item": "viz_b7IUXp5j",
+            "type": "block",
+            "position": {
+              "x": 0,
+              "y": 1600,
+              "w": 1440,
+              "h": 400
+            }
+          },
+          {
+            "item": "viz_KuZmunRO",
+            "type": "block",
+            "position": {
+              "x": 0,
+              "y": 2000,
+              "w": 1440,
+              "h": 400
+            }
+          }
+        ],
+        "options": {
+          "width": 1440,
+          "height": 960
+        }
+      }
+    }
+  },
+  "description": "",
+  "title": "Dashboard2 - Joomla Authentication & Admin Activity"
+}

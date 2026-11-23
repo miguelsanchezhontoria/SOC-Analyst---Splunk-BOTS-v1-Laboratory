@@ -1,0 +1,212 @@
+{
+  "visualizations": {
+    "viz_vgmdynZ0": {
+      "type": "splunk.line",
+      "options": {},
+      "dataSources": {
+        "primary": "ds_LbzUFfXo"
+      }
+    },
+    "viz_SCase58u": {
+      "type": "splunk.column",
+      "options": {},
+      "dataSources": {
+        "primary": "ds_mNEtmVqa"
+      }
+    },
+    "viz_O4qoZ6xR": {
+      "type": "splunk.column",
+      "options": {},
+      "dataSources": {
+        "primary": "ds_E9zGQLkI"
+      }
+    },
+    "viz_XW1OPsQv": {
+      "type": "splunk.pie",
+      "options": {},
+      "dataSources": {
+        "primary": "ds_222aADn8"
+      }
+    },
+    "viz_VMqaoQdl": {
+      "type": "splunk.bar",
+      "options": {},
+      "dataSources": {
+        "primary": "ds_1mCngmNv"
+      }
+    },
+    "viz_iCglWed9": {
+      "type": "splunk.table",
+      "options": {},
+      "dataSources": {
+        "primary": "ds_m7mnLEUC"
+      }
+    }
+  },
+  "dataSources": {
+    "ds_LbzUFfXo": {
+      "type": "ds.search",
+      "options": {
+        "query": "index=botsv1 sourcetype=stream:http earliest=0\nimreallynotbatman.com\n| timechart span=15m count as \"HTTP Requests\""
+      },
+      "name": "Search_1"
+    },
+    "ds_mNEtmVqa": {
+      "type": "ds.search",
+      "options": {
+        "query": "index=botsv1 sourcetype=stream:http earliest=0\nimreallynotbatman.com\n| stats count as requests by src_ip\n| sort - requests\n| head 10"
+      },
+      "name": "Search_2"
+    },
+    "ds_E9zGQLkI": {
+      "type": "ds.search",
+      "options": {
+        "query": "index=botsv1 sourcetype=stream:http earliest=0\nimreallynotbatman.com\n| stats count as requests by uri_path\n| sort - requests\n| head 10"
+      },
+      "name": "Search_3"
+    },
+    "ds_222aADn8": {
+      "type": "ds.search",
+      "options": {
+        "query": "index=botsv1 sourcetype=stream:http earliest=0\nimreallynotbatman.com\n| eval http_status=coalesce(status,\"No status\")\n| stats count as requests by http_status\n| sort - requests"
+      },
+      "name": "Search_4"
+    },
+    "ds_1mCngmNv": {
+      "type": "ds.search",
+      "options": {
+        "query": "index=botsv1 sourcetype=suricata earliest=0\nimreallynotbatman.com\n| stats count as events by signature\n| sort - events\n| head 10"
+      },
+      "name": "Search_5"
+    },
+    "ds_m7mnLEUC": {
+      "type": "ds.search",
+      "options": {
+        "query": "index=botsv1 sourcetype=stream:http earliest=0\nimreallynotbatman.com\n| stats count as requests\n    dc(uri_path) as unique_paths\n    values(http_method) as methods\n    values(status) as status_codes\n    by src_ip\n| sort - requests"
+      },
+      "name": "Search_6"
+    }
+  },
+  "defaults": {
+    "dataSources": {
+      "ds.search": {
+        "options": {
+          "queryParameters": {
+            "latest": "$global_time.latest$",
+            "earliest": "$global_time.earliest$"
+          }
+        }
+      },
+      "ds.spl2": {
+        "options": {
+          "queryParameters": {
+            "latest": "$global_time.latest$",
+            "earliest": "$global_time.earliest$"
+          }
+        }
+      }
+    },
+    "visualizations": {
+      "global": {
+        "showProgressBar": true
+      }
+    }
+  },
+  "inputs": {
+    "input_global_trp": {
+      "type": "input.timerange",
+      "options": {
+        "token": "global_time",
+        "defaultValue": "-24h@h,now"
+      },
+      "title": "Global Time Range"
+    }
+  },
+  "layout": {
+    "options": {},
+    "globalInputs": [
+      "input_global_trp"
+    ],
+    "tabs": {
+      "items": [
+        {
+          "layoutId": "layout_1",
+          "label": "New tab"
+        }
+      ]
+    },
+    "layoutDefinitions": {
+      "layout_1": {
+        "type": "grid",
+        "structure": [
+          {
+            "item": "viz_vgmdynZ0",
+            "type": "block",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "w": 1440,
+              "h": 400
+            }
+          },
+          {
+            "item": "viz_SCase58u",
+            "type": "block",
+            "position": {
+              "x": 0,
+              "y": 400,
+              "w": 1440,
+              "h": 400
+            }
+          },
+          {
+            "item": "viz_O4qoZ6xR",
+            "type": "block",
+            "position": {
+              "x": 0,
+              "y": 800,
+              "w": 1440,
+              "h": 400
+            }
+          },
+          {
+            "item": "viz_XW1OPsQv",
+            "type": "block",
+            "position": {
+              "x": 0,
+              "y": 1200,
+              "w": 1440,
+              "h": 400
+            }
+          },
+          {
+            "item": "viz_VMqaoQdl",
+            "type": "block",
+            "position": {
+              "x": 0,
+              "y": 1600,
+              "w": 1440,
+              "h": 400
+            }
+          },
+          {
+            "item": "viz_iCglWed9",
+            "type": "block",
+            "position": {
+              "x": 0,
+              "y": 2000,
+              "w": 1440,
+              "h": 400
+            }
+          }
+        ],
+        "options": {
+          "width": 1440,
+          "height": 960
+        }
+      }
+    }
+  },
+  "description": "",
+  "title": "Dashboard1 - Web Attack Overview"
+}

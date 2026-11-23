@@ -1,0 +1,212 @@
+{
+  "visualizations": {
+    "viz_lIJI30lk": {
+      "type": "splunk.table",
+      "options": {},
+      "dataSources": {
+        "primary": "ds_TSLwQYOv"
+      }
+    },
+    "viz_9zmkMBlD": {
+      "type": "splunk.table",
+      "options": {},
+      "dataSources": {
+        "primary": "ds_NMvtbxKI"
+      }
+    },
+    "viz_rdsmSdSo": {
+      "type": "splunk.line",
+      "options": {},
+      "dataSources": {
+        "primary": "ds_TLrEzmEp"
+      }
+    },
+    "viz_2php3ZYB": {
+      "type": "splunk.table",
+      "options": {},
+      "dataSources": {
+        "primary": "ds_pGhvpZjh"
+      }
+    },
+    "viz_0l3ytKXr": {
+      "type": "splunk.table",
+      "options": {},
+      "dataSources": {
+        "primary": "ds_mabzzPZ5"
+      }
+    },
+    "viz_yqNeg1aP": {
+      "type": "splunk.bar",
+      "options": {},
+      "dataSources": {
+        "primary": "ds_WGZPdbif"
+      }
+    }
+  },
+  "dataSources": {
+    "ds_TSLwQYOv": {
+      "type": "ds.search",
+      "options": {
+        "query": "index=botsv1 sourcetype=suricata earliest=0\nevent_type=fileinfo\nfileinfo.filename=\"*.exe\"\n| table _time src_ip dest_ip dest_port\n    fileinfo.filename fileinfo.size\n    fileinfo.state fileinfo.stored\n| sort - _time"
+      },
+      "name": "Search_1"
+    },
+    "ds_NMvtbxKI": {
+      "type": "ds.search",
+      "options": {
+        "query": "index=botsv1 sourcetype=XmlWinEventLog earliest=0\nEventCode=1\nImage=\"*\\\\inetpub\\\\wwwroot\\\\*\"\n| table _time host Image CommandLine\n    ParentImage ProcessId ProcessGuid User\n| sort - _time"
+      },
+      "name": "Search_2"
+    },
+    "ds_TLrEzmEp": {
+      "type": "ds.search",
+      "options": {
+        "query": "index=botsv1 sourcetype=XmlWinEventLog earliest=0\nEventCode=1\nhost=\"we1149srv\"\n| timechart span=15m count as \"Process Creations\""
+      },
+      "name": "Search_3"
+    },
+    "ds_pGhvpZjh": {
+      "type": "ds.search",
+      "options": {
+        "query": "index=botsv1 sourcetype=XmlWinEventLog earliest=0\nEventCode=3\nhost=\"we1149srv\"\n| table _time Image ProcessId ProcessGuid\n    Protocol Initiated SourceIp SourcePort\n    DestinationIp DestinationPort DestinationHostname\n| sort - _time"
+      },
+      "name": "Search_4"
+    },
+    "ds_mabzzPZ5": {
+      "type": "ds.search",
+      "options": {
+        "query": "index=botsv1 sourcetype=XmlWinEventLog earliest=0\nEventCode=7\nhost=\"we1149srv\"\n| table _time Image ImageLoaded\n    ProcessId ProcessGuid Hashes Signed Signature\n| sort - _time"
+      },
+      "name": "Search_5"
+    },
+    "ds_WGZPdbif": {
+      "type": "ds.search",
+      "options": {
+        "query": "index=botsv1 sourcetype=XmlWinEventLog earliest=0\nhost=\"we1149srv\"\n| stats count as events by EventCode\n| sort EventCode"
+      },
+      "name": "Search_6"
+    }
+  },
+  "defaults": {
+    "dataSources": {
+      "ds.search": {
+        "options": {
+          "queryParameters": {
+            "latest": "$global_time.latest$",
+            "earliest": "$global_time.earliest$"
+          }
+        }
+      },
+      "ds.spl2": {
+        "options": {
+          "queryParameters": {
+            "latest": "$global_time.latest$",
+            "earliest": "$global_time.earliest$"
+          }
+        }
+      }
+    },
+    "visualizations": {
+      "global": {
+        "showProgressBar": true
+      }
+    }
+  },
+  "inputs": {
+    "input_global_trp": {
+      "type": "input.timerange",
+      "options": {
+        "token": "global_time",
+        "defaultValue": "-24h@h,now"
+      },
+      "title": "Global Time Range"
+    }
+  },
+  "layout": {
+    "options": {},
+    "globalInputs": [
+      "input_global_trp"
+    ],
+    "tabs": {
+      "items": [
+        {
+          "layoutId": "layout_1",
+          "label": "New tab"
+        }
+      ]
+    },
+    "layoutDefinitions": {
+      "layout_1": {
+        "type": "grid",
+        "structure": [
+          {
+            "item": "viz_lIJI30lk",
+            "type": "block",
+            "position": {
+              "x": 0,
+              "y": 0,
+              "w": 1440,
+              "h": 400
+            }
+          },
+          {
+            "item": "viz_9zmkMBlD",
+            "type": "block",
+            "position": {
+              "x": 0,
+              "y": 400,
+              "w": 1440,
+              "h": 400
+            }
+          },
+          {
+            "item": "viz_rdsmSdSo",
+            "type": "block",
+            "position": {
+              "x": 0,
+              "y": 800,
+              "w": 1440,
+              "h": 400
+            }
+          },
+          {
+            "item": "viz_2php3ZYB",
+            "type": "block",
+            "position": {
+              "x": 0,
+              "y": 1200,
+              "w": 1440,
+              "h": 400
+            }
+          },
+          {
+            "item": "viz_0l3ytKXr",
+            "type": "block",
+            "position": {
+              "x": 0,
+              "y": 1600,
+              "w": 1440,
+              "h": 400
+            }
+          },
+          {
+            "item": "viz_yqNeg1aP",
+            "type": "block",
+            "position": {
+              "x": 0,
+              "y": 2000,
+              "w": 1440,
+              "h": 400
+            }
+          }
+        ],
+        "options": {
+          "width": 1440,
+          "height": 960
+        }
+      }
+    }
+  },
+  "description": "",
+  "title": "Dashboard3 - Web Server Compromise"
+}
