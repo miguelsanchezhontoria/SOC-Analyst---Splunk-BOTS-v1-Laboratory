@@ -11,7 +11,7 @@ Chuleta de los comandos de Splunk (SPL) utilizados en el laboratorio. Solo se in
 ## 1. Filtros (parte inicial de la búsqueda)
 
 | Elemento | Qué hace | Ejemplo |
-|---|---|---|---|
+|---|---|---|
 | `index=botsv1` | Limita la búsqueda al índice del laboratorio | `index=botsv1 ...` | 
 | `earliest=0` | Busca desde el instante 0 (1970), es decir, sin límite de fecha. Prevalece sobre el selector de tiempo de la pantalla. Necesario porque los eventos son de 2016 | `index=botsv1 earliest=0` |
 | `sourcetype=<X>` | Selecciona los registros de un tipo de fuente | `sourcetype=stream:http` | 
@@ -29,7 +29,7 @@ Chuleta de los comandos de Splunk (SPL) utilizados en el laboratorio. Solo se in
 ## 2. Comandos de transformación (después del `|`)
 
 | Comando | Qué hace | Ejemplo | 
-|---|---|---|---|
+|---|---|---|
 | `stats count by <campo>` | Cuenta los eventos agrupados por el valor de un campo. **Descarta los eventos que no tienen ese campo** | `stats count by src_ip` | 
 | `stats count by <c1> <c2>` | Agrupa por la combinación de dos campos | `stats count by uri_path status` | 
 | `sort - count` | Ordena de mayor a menor número de eventos | `sort - count` |
