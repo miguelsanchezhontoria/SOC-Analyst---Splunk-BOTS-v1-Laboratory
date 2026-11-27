@@ -41,7 +41,7 @@ Mis resultados, hallazgos y razonamientos se irán añadiendo en los apartados s
 
 - Cada escenario se estructura seguiendo relativamente la **Cyber Kill Chain**.
 - Cada hallazgo se documenta con su pregunta, razonamiento, consulta SPL, evidencia y conclusión.
-- Las consultas reutilizables se guardan en `spl/`, las detecciones propias en `detections/` y los paneles visuales en `dashboards/`.
+- Las consultas reutilizables se guardan en /spl, las detecciones propias en /detections y los paneles visuales en /dashboards.
 
 ## 4. Progreso
 
